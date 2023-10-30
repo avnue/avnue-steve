@@ -6,9 +6,18 @@
     </Properties>
 
     <Appenders>
-        <Console name="CONSOLE" target="SYSTEM_OUT">
+        <RollingRandomAccessFile name="FILE"
+                                 fileName="${sys:user.home}/logs/steve.log"
+                                 filePattern="${sys:user.home}/logs/steve-%d{yyyy-MM-dd}-%i.log.gz"
+                                 immediateFlush="false"
+                                 append="true">
             <PatternLayout pattern="${logPattern}"/>
-        </Console>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10 MB"/>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingRandomAccessFile>
     </Appenders>
 
     <Loggers>
@@ -16,19 +25,12 @@
         <!-- https://github.com/jOOQ/jOOQ/issues/4019 -->
         <AsyncLogger name="org.jooq.Constants" level="WARN"/>
 
-        <AsyncLogger name="org.apache.cxf" level="INFO"/>
-        <AsyncLogger name="org.eclipse.jetty" level="INFO"/>
-        <AsyncLogger name="com.zaxxer.hikari" level="INFO"/>
-        <AsyncLogger name="org.springframework" level="INFO"/>
-        <AsyncLogger name="org.springframework.security" level="INFO"/>
-        <AsyncLogger name="org.springframework.web.servlet" level="INFO"/>
-
         <AsyncLogger name="org.apache.jasper" level="WARN"/>
         <AsyncLogger name="org.apache.tomcat.util" level="WARN"/>
         <AsyncLogger name="jndi" level="WARN"/>
 
         <AsyncRoot level="INFO">
-            <AppenderRef ref="CONSOLE"/>
+            <AppenderRef ref="FILE"/>
         </AsyncRoot>
     </Loggers>
 </Configuration>
