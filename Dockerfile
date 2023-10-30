@@ -7,8 +7,8 @@ ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 ENV DOCKERIZE_VERSION v0.19.0
 RUN curl -sfL https://github.com/powerman/dockerize/releases/download/"$DOCKERIZE_VERSION"/dockerize-`uname -s`-`uname -m` | install /dev/stdin /usr/local/bin/dockerize
 
-EXPOSE 80
-EXPOSE 443
+EXPOSE 8080
+EXPOSE 8443
 
 WORKDIR /code
 
