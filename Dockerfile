@@ -8,6 +8,7 @@ ENV DOCKERIZE_VERSION v0.19.0
 RUN curl -sfL https://github.com/powerman/dockerize/releases/download/"$DOCKERIZE_VERSION"/dockerize-`uname -s`-`uname -m` | install /dev/stdin /usr/local/bin/dockerize
 
 EXPOSE 80
+EXPOSE 443
 
 WORKDIR /code
 
