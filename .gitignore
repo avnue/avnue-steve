@@ -2,5 +2,5 @@
 /.idea
 *.iml
 .DS_Store
-/steve/*
-!*/webapp/
+/steve
+!/steve/src/main/resources/webapp/
